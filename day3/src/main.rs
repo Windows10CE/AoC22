@@ -25,7 +25,6 @@ fn main() {
 
     let sum_priorities: u32 = sacks
         .iter()
-        .copied()
         .map(|l| {
             let sack = l.split_at(l.len() / 2);
             (
@@ -38,7 +37,6 @@ fn main() {
 
     let sum_badges: u32 = sacks
         .iter()
-        .copied()
         .map(|sack| sack.iter().collect::<HashSet<_>>())
         .array_chunks::<3>()
         .map(|group| {
