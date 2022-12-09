@@ -1,4 +1,4 @@
-use std::{time::Instant, collections::HashSet};
+use std::{collections::HashSet, time::Instant};
 
 fn main() {
     let start = Instant::now();
@@ -10,14 +10,16 @@ fn main() {
         .enumerate()
         .find(|chars| chars.1.iter().collect::<HashSet<_>>().len() == 4)
         .unwrap()
-        .0 + 4;
+        .0
+        + 4;
 
     let first_fourteen_different_index = input
         .windows(14)
         .enumerate()
         .find(|chars| chars.1.iter().collect::<HashSet<_>>().len() == 14)
         .unwrap()
-        .0 + 14;
+        .0
+        + 14;
 
     let end = Instant::now();
     println!("Total time: {:#?}", end - start);
