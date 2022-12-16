@@ -1,10 +1,7 @@
 #![feature(array_chunks)]
 
 use core::slice;
-use std::{
-    cmp::Ordering,
-    time::Instant,
-};
+use std::{cmp::Ordering, time::Instant};
 
 #[derive(Clone, PartialEq, Eq)]
 enum ListItem {
