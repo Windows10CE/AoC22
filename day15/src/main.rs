@@ -71,40 +71,42 @@ fn main() {
 
     const BOUNDS: ((i64, i64), (i64, i64)) = ((0, 4000000), (0, 4000000));
 
-    let location = sensors.iter().filter_map(|s| {
-        let mut test_loc = (s.location.0 + s.distance + 1, s.location.1);
-        for _ in 0..=s.distance + 1 {
-            test_loc.0 -= 1;
-            test_loc.1 += 1;
-            if within(test_loc, BOUNDS) && sensors.iter().all(|s| !s.within_bounds(test_loc)) {
-                return Some(test_loc);
+    let location = sensors
+        .iter()
+        .filter_map(|s| {
+            let mut test_loc = (s.location.0 + s.distance + 1, s.location.1);
+            for _ in 0..=s.distance + 1 {
+                test_loc.0 -= 1;
+                test_loc.1 += 1;
+                if within(test_loc, BOUNDS) && sensors.iter().all(|s| !s.within_bounds(test_loc)) {
+                    return Some(test_loc);
+                }
             }
-        }
-        for _ in 0..=s.distance + 1 {
-            test_loc.0 -= 1;
-            test_loc.1 -= 1;
-            if within(test_loc, BOUNDS) && sensors.iter().all(|s| !s.within_bounds(test_loc)) {
-                return Some(test_loc);
+            for _ in 0..=s.distance + 1 {
+                test_loc.0 -= 1;
+                test_loc.1 -= 1;
+                if within(test_loc, BOUNDS) && sensors.iter().all(|s| !s.within_bounds(test_loc)) {
+                    return Some(test_loc);
+                }
             }
-        }
-        for _ in 0..=s.distance + 1 {
-            test_loc.0 += 1;
-            test_loc.1 -= 1;
-            if within(test_loc, BOUNDS) && sensors.iter().all(|s| !s.within_bounds(test_loc)) {
-                return Some(test_loc);
+            for _ in 0..=s.distance + 1 {
+                test_loc.0 += 1;
+                test_loc.1 -= 1;
+                if within(test_loc, BOUNDS) && sensors.iter().all(|s| !s.within_bounds(test_loc)) {
+                    return Some(test_loc);
+                }
             }
-        }
-        for _ in 0..=s.distance + 1 {
-            test_loc.0 += 1;
-            test_loc.1 += 1;
-            if within(test_loc, BOUNDS) && sensors.iter().all(|s| !s.within_bounds(test_loc)) {
-                return Some(test_loc);
+            for _ in 0..=s.distance + 1 {
+                test_loc.0 += 1;
+                test_loc.1 += 1;
+                if within(test_loc, BOUNDS) && sensors.iter().all(|s| !s.within_bounds(test_loc)) {
+                    return Some(test_loc);
+                }
             }
-        }
-        None
-    })
-    .next()
-    .unwrap();
+            None
+        })
+        .next()
+        .unwrap();
 
     let frequency = location.0 * 4000000 + location.1;
 
@@ -120,5 +122,8 @@ fn abs_diff(a: i64, b: i64) -> i64 {
 }
 
 fn within(point: (i64, i64), bounds: ((i64, i64), (i64, i64))) -> bool {
-    point.0 >= bounds.0.0 && point.0 <= bounds.0.1 && point.1 >= bounds.1.0 && point.1 <= bounds.1.1
+    point.0 >= bounds.0 .0
+        && point.0 <= bounds.0 .1
+        && point.1 >= bounds.1 .0
+        && point.1 <= bounds.1 .1
 }

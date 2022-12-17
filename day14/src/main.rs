@@ -18,19 +18,18 @@ fn main() {
         })
         .collect();
 
-    let (max_x, max_y) =
-        walls
-            .iter()
-            .flatten()
-            .fold((i32::MIN, i32::MIN), |mut current, item| {
-                if item.0 > current.0 {
-                    current.0 = item.0;
-                }
-                if item.1 > current.1 {
-                    current.1 = item.1;
-                }
-                current
-            });
+    let (max_x, max_y) = walls
+        .iter()
+        .flatten()
+        .fold((i32::MIN, i32::MIN), |mut current, item| {
+            if item.0 > current.0 {
+                current.0 = item.0;
+            }
+            if item.1 > current.1 {
+                current.1 = item.1;
+            }
+            current
+        });
 
     let border_x = max_x + 1;
     let border_y = max_y + 1;
